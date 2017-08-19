@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="447.0" prefWidth="287.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.alsoftware.calc.calcController">
+   <top>
+      <Label text="ALS-JCalc" textFill="#021d75" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="txtExpr" alignment="TOP_RIGHT" contentDisplay="CENTER" prefWidth="287.0" style="-fx-background-color: #333;" textAlignment="RIGHT" textFill="#e9f500">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="txtDisplay" alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="287.0" style="-fx-background-color: #333; -fx-text-fill: lime;">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </TextField>
+            <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="btnPerc" alignment="CENTER" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doPerc" onDragDetected="#doPerc" text="\%" textAlignment="CENTER" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnSqrt" alignment="CENTER" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doSqrt" text="V" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnPotenza" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="13.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doPotenza" text="x²" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnFraz" alignment="CENTER" layoutX="157.0" layoutY="13.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doFraz" text="¹/x" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnClear1" alignment="CENTER" layoutX="12.0" layoutY="13.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doClearExpr" text="CE" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnClear2" alignment="CENTER" layoutX="12.0" layoutY="69.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doClearCurr" text="C" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnCanc" alignment="CENTER" layoutX="81.0" layoutY="69.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doDelDigit" text="&lt;-" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnDivi" alignment="CENTER" layoutX="150.0" layoutY="69.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doOperazione" text="÷" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn7" alignment="CENTER" layoutX="12.0" layoutY="69.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="7" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn8" alignment="CENTER" layoutX="12.0" layoutY="125.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="8" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn9" alignment="CENTER" layoutX="79.0" layoutY="125.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="9" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnMult" alignment="CENTER" layoutX="148.0" layoutY="125.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doOperazione" text="X" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn4" alignment="CENTER" layoutX="12.0" layoutY="125.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="4" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn5" alignment="CENTER" layoutX="10.0" layoutY="181.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn6" alignment="CENTER" layoutX="79.0" layoutY="181.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnMeno" alignment="CENTER" layoutX="148.0" layoutY="181.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doOperazione" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn1" alignment="CENTER" layoutX="12.0" layoutY="181.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn2" alignment="CENTER" layoutX="10.0" layoutY="237.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn3" alignment="CENTER" layoutX="79.0" layoutY="237.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnPiu" alignment="CENTER" layoutX="148.0" layoutY="237.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doOperazione" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnSegno" alignment="CENTER" layoutX="10.0" layoutY="237.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doInverti" text="±" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn0" alignment="CENTER" layoutX="10.0" layoutY="293.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnVirg" alignment="CENTER" layoutX="79.0" layoutY="293.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doAddDigit" text="," textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnUguale" alignment="CENTER" layoutX="148.0" layoutY="293.0" maxWidth="65.0" minWidth="65.0" mnemonicParsing="false" onAction="#doTotale" text="=" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
