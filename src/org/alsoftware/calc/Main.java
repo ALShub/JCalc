@@ -21,7 +21,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setResizable(false);			
-			   scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+			   scene.addEventFilter(KeyEvent.KEY_PRESSED, (key) -> {
 				   KeyCode c = key.getCode();					   
 				   switch (c) {				   
 				   case ENTER: 	controller.performTotale();
