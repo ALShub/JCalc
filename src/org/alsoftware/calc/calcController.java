@@ -246,7 +246,16 @@ public class calcController {
     }
     
     public void performTotale() {
-    	if (expr.length()>0) {
+    	if (expr.length()>0) {   
+    		// correzione segni
+    		String segnoExpr = expr.substring(expr.length()-1, expr.length());
+    		String segnoCurr = curr.substring(0, 1);
+    		if (segnoCurr.equals("-") && segnoExpr.equals("-")) {
+                  String s = curr.substring(1,curr.length());      			
+    			  curr = s;
+    			  s = expr.substring(0,expr.length()-1)+"+";
+    			  expr = s;
+    		}
 	    	ScriptEngineManager manager = new ScriptEngineManager();
 	    	ScriptEngine engine = manager.getEngineByName("js");
 	    	try {    		
