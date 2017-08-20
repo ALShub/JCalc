@@ -304,11 +304,13 @@ public class calcController {
     	doDisplayCurr();
     }
     
-    public void performOperazione(String oper) {    	
+    public void performOperazione(String oper) {   
+    	if (!curr.equals("")) {
     	  expr += curr;
           expr += oper;
           curr = "";
           doDisplayExpr();
+    	}
     }
     
     public void performDelDigit() {
