@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 public class calcController {
 	private String curr = "";
 	private String expr = "";
+	private boolean justCommitted = true;
 	
 	private void doDisplayCurr() {
 		if (curr.equals("")) txtDisplay.setText("0"); else txtDisplay.setText(curr);
@@ -258,7 +259,8 @@ public class calcController {
 				}
 				expr = "";
 				doDisplayCurr();
-				doDisplayExpr();     	    	
+				doDisplayExpr();
+				justCommitted = true;
 			} catch (ScriptException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -282,6 +284,11 @@ public class calcController {
     }
     
     public void performDigit(String digit) {
+    	if (justCommitted==true) {
+    		  curr="";
+    		  justCommitted = false;
+    	}
+    	
     	if (digit.equals(".")) {
 			if ((!curr.contains("."))&&(!curr.isEmpty())) curr += ".";
     	} else curr += digit;
