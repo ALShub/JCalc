@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 public class calcController {
 	private String curr = "";
 	private String expr = "";
@@ -24,7 +23,9 @@ public class calcController {
 		s = s.replace('*', 'x').replace('/', '÷').replace('.', ',');		
 		txtExpr.setText(s);
 	}
-	
+	public void test(){
+		System.out.print("pippo\n");
+	}
 		
 	@FXML
 	private Label txtExpr;	
@@ -107,33 +108,31 @@ public class calcController {
     @FXML
     void doAddDigit(ActionEvent event) {
     	String id = ((Node) event.getSource()).getId();
-    	if (id.equals("btn9")) curr += "9";
+    	String digit = "";
+    	if (id.equals("btn9")) digit += "9";
     	else
-    		if (id.equals("btn8")) curr += "8";
+    		if (id.equals("btn8")) digit += "8";
         	else
-        		if (id.equals("btn7")) curr += "7";
+        		if (id.equals("btn7")) digit += "7";
             	else
-            		if (id.equals("btn6")) curr += "6";
+            		if (id.equals("btn6")) digit += "6";
                 	else
-                		if (id.equals("btn5")) curr += "5";
+                		if (id.equals("btn5")) digit += "5";
                     	else
-                    		if (id.equals("btn4")) curr += "4";
+                    		if (id.equals("btn4")) digit += "4";
                         	else
-                        		if (id.equals("btn3")) curr += "3";
+                        		if (id.equals("btn3")) digit += "3";
                             	else
-                            		if (id.equals("btn2")) curr += "2";
+                            		if (id.equals("btn2")) digit += "2";
                                 	else
-                                		if (id.equals("btn1")) curr += "1";
+                                		if (id.equals("btn1")) digit += "1";
                                     	else
-                                    		if (id.equals("btn0")) curr += "0";   
+                                    		if (id.equals("btn0")) digit += "0";   
                                     		else
-                                    			if (id.equals("btnVirg")) {
-                                    				if ((!curr.contains("."))&&(!curr.isEmpty())) curr += ".";
-                                    			}
-    	
-    	doDisplayCurr();    		
+                                    			if (id.equals("btnVirg")) digit += '.';                                    				
+    	performDigit(digit);    	    		
     }
-    
+        
     @FXML
     void doClearCurr(ActionEvent event) {
     	curr = "";
@@ -150,17 +149,16 @@ public class calcController {
 
     @FXML
     void doOperazione(ActionEvent event) {
+    	String oper = "";
      	String id = ((Node) event.getSource()).getId();
-     	if (id.equals("btnPiu")) curr += "+";
+     	if (id.equals("btnPiu")) oper += "+";
      	else
-     		if (id.equals("btnMeno")) curr += "-";
+     		if (id.equals("btnMeno")) oper += "-";
          	else
-         		if (id.equals("btnMult")) curr += "*";
+         		if (id.equals("btnMult")) oper += "*";
              	else
-             		if (id.equals("btnDivi")) curr += "/";
-        expr += curr;
-        curr = "";
-        doDisplayExpr();     		
+             		if (id.equals("btnDivi")) oper += "/";
+      performOperazione(oper);     		
     }
     
     @FXML
@@ -176,34 +174,12 @@ public class calcController {
 
     @FXML
     void doTotale(ActionEvent event) {
-    	if (expr.length()>0) {
-	    	ScriptEngineManager manager = new ScriptEngineManager();
-	    	ScriptEngine engine = manager.getEngineByName("js");
-	    	try {    		
-	    		expr += curr;
-				Object result = engine.eval(expr);
-				curr = result.toString();
-				if ((curr.contains("."))&&(curr.substring(curr.length()-2, curr.length()).equals(".0"))) {
-					String s = curr.substring(0,curr.length()-2);					
-					curr = s;
-				}
-				expr = "";
-				doDisplayCurr();
-				doDisplayExpr();     	    	
-			} catch (ScriptException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    	}
+    	performTotale();
     }
 
     @FXML
     void doDelDigit(ActionEvent event) {
-      if (!curr.isEmpty()) {
-    	  curr = curr.substring(0,curr.length()-1);
-    	  if (curr.equals("-")) curr="";
-      }
-	  doDisplayCurr();      
+    	performDelDigit();
     }
 
     @FXML
@@ -250,17 +226,7 @@ public class calcController {
 
     @FXML
     void doPotenza(ActionEvent event) {
-    	ScriptEngineManager manager = new ScriptEngineManager();
-    	ScriptEngine engine = manager.getEngineByName("js");
-    	try {     		
-			Object result = engine.eval(curr+"*"+curr);
-			curr = result.toString();
-			doDisplayCurr();
-			doDisplayExpr();     	    	
-		} catch (ScriptException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}           
+    	performPotenza();
     }
 
     @FXML
@@ -277,4 +243,64 @@ public class calcController {
 			e.printStackTrace();
 		}           
     }
+    
+    public void performTotale() {
+    	if (expr.length()>0) {
+	    	ScriptEngineManager manager = new ScriptEngineManager();
+	    	ScriptEngine engine = manager.getEngineByName("js");
+	    	try {    		
+	    		expr += curr;
+				Object result = engine.eval(expr);
+				curr = result.toString();
+				if ((curr.contains("."))&&(curr.substring(curr.length()-2, curr.length()).equals(".0"))) {
+					String s = curr.substring(0,curr.length()-2);					
+					curr = s;
+				}
+				expr = "";
+				doDisplayCurr();
+				doDisplayExpr();     	    	
+			} catch (ScriptException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    }
+    
+    public void performPotenza() {
+    	ScriptEngineManager manager = new ScriptEngineManager();
+    	ScriptEngine engine = manager.getEngineByName("js");
+    	try {     		
+			Object result = engine.eval(curr+"*"+curr);
+			curr = result.toString();
+			doDisplayCurr();
+			doDisplayExpr();     	    	
+		} catch (ScriptException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void performDigit(String digit) {
+    	if (digit.equals(".")) {
+			if ((!curr.contains("."))&&(!curr.isEmpty())) curr += ".";
+    	} else curr += digit;
+    	doDisplayCurr();
+    }
+    
+    public void performOperazione(String oper) {    	
+    	  expr += curr;
+          expr += oper;
+          curr = "";
+          doDisplayExpr();
+    }
+    
+    public void performDelDigit() {
+        if (!curr.isEmpty()) {
+      	  curr = curr.substring(0,curr.length()-1);
+      	  if (curr.equals("-")) curr="";
+        }
+  	  doDisplayCurr();      
+    }
+    
 }
