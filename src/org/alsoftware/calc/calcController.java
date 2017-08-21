@@ -16,7 +16,13 @@ public class calcController {
 	private boolean justCommitted = true;
 	
 	private void doDisplayCurr() {
-		if (curr.equals("")) txtDisplay.setText("0"); else txtDisplay.setText(curr);
+		if ((curr.contains("."))&&(curr.substring(curr.length()-2, curr.length()).equals(".0"))) {
+			String s = curr.substring(0,curr.length()-2);					
+			curr = s;
+		}
+		
+		String s = curr.replace('.', ',');		
+		if (s.equals("")) txtDisplay.setText("0"); else txtDisplay.setText(s);
 	}
 	private void doDisplayExpr() {
 		String s = "";
@@ -128,10 +134,15 @@ public class calcController {
                                 	else
                                 		if (id.equals("btn1")) digit += "1";
                                     	else
-                                    		if (id.equals("btn0")) digit += "0";   
+                                    		if (id.equals("btn0")) {
+                                    		  if (curr.length()>0)
+                                    		  digit += "0";   
+                                    		}
                                     		else
-                                    			if (id.equals("btnVirg")) digit += '.';                                    				
-    	performDigit(digit);    	    		
+                                    			if (id.equals("btnVirg")) {
+                                    				if (!curr.contains(".")) digit += '.';                                    				
+                                    			}
+    	if (!digit.equals("")) performDigit(digit);    	    		
     }
         
     @FXML
@@ -194,7 +205,7 @@ public class calcController {
 			a = result.toString();
 			result = engine.eval(a+"*"+curr+"/100");
 			curr = result.toString();
-			expr += curr;
+			//expr += curr;
 			doDisplayCurr();
 			doDisplayExpr();     	    				
 		} catch (ScriptException e) {
@@ -246,7 +257,8 @@ public class calcController {
     }
     
     public void performTotale() {
-    	if (expr.length()>0) {   
+    	if ((expr.length()>0)&&(curr.length()>0)) {   
+    		System.out.format("curr %s expr %s\n",curr, expr);
     		// correzione segni
     		String segnoExpr = expr.substring(expr.length()-1, expr.length());
     		String segnoCurr = curr.substring(0, 1);
@@ -256,16 +268,13 @@ public class calcController {
     			  s = expr.substring(0,expr.length()-1)+"+";
     			  expr = s;
     		}
+    		System.out.format("curr %s expr %s\n",curr, expr);
 	    	ScriptEngineManager manager = new ScriptEngineManager();
 	    	ScriptEngine engine = manager.getEngineByName("js");
 	    	try {    		
 	    		expr += curr;
 				Object result = engine.eval(expr);
 				curr = result.toString();
-				if ((curr.contains("."))&&(curr.substring(curr.length()-2, curr.length()).equals(".0"))) {
-					String s = curr.substring(0,curr.length()-2);					
-					curr = s;
-				}
 				expr = "";
 				doDisplayCurr();
 				doDisplayExpr();

@@ -30,7 +30,7 @@
                   <Insets right="5.0" />
                </padding>
             </Label>
-            <TextField fx:id="txtDisplay" alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="287.0" style="-fx-background-color: #333; -fx-text-fill: lime;">
+            <TextField fx:id="txtDisplay" alignment="CENTER_RIGHT" editable="false" focusTraversable="false" prefHeight="23.0" prefWidth="287.0" style="-fx-background-color: #333; -fx-text-fill: lime;" text="0">
                <font>
                   <Font size="26.0" />
                </font>
