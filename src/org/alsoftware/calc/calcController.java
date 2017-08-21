@@ -170,7 +170,7 @@ public class calcController {
          		if (id.equals("btnMult")) oper += "*";
              	else
              		if (id.equals("btnDivi")) oper += "/";
-      performOperazione(oper);     		
+      performOperazione(oper);        
     }
     
     @FXML
