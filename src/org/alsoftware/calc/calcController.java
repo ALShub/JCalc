@@ -16,10 +16,12 @@ public class calcController {
 	private boolean justCommitted = true;
 	
 	private void doDisplayCurr() {
+		/*
 		if ((curr.contains("."))&&(curr.substring(curr.length()-2, curr.length()).equals(".0"))) {
 			String s = curr.substring(0,curr.length()-2);					
 			curr = s;
 		}
+		*/
 		
 		String s = curr.replace('.', ',');		
 		if (s.equals("")) txtDisplay.setText("0"); else txtDisplay.setText(s);
